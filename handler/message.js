@@ -38,7 +38,7 @@ async function MessageHandler(message) {
                 this.acClient.wsStart();
             }
 
-            this.acClient.on("error", () => {
+            this.acClient.on("decode-error", () => {
                 this.close();
             })
 

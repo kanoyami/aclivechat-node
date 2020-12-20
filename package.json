@@ -7,7 +7,7 @@
     "dev": "node-dev app.js"
   },
   "dependencies": {
-    "ac-danmu": "^0.4.3",
+    "ac-danmu": "^0.4.4",
     "connect-history-api-fallback": "^1.6.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",

@@ -1,13 +1,13 @@
 {
   "name": "aclivechat-node",
-  "version": "0.2.12",
+  "version": "0.2.15",
   "private": true,
   "scripts": {
     "start": "node app.js",
     "dev": "node-dev app.js"
   },
   "dependencies": {
-    "ac-danmu": "0.4.0",
+    "ac-danmu": "^0.4.1",
     "connect-history-api-fallback": "^1.6.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",

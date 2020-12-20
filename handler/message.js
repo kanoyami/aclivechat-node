@@ -1,4 +1,5 @@
 const acClient = require("ac-danmu")
+const { ws } = require("../routes")
 const COMMAND_HEARTBEAT = 0
 const COMMAND_JOIN_ROOM = 1
 const COMMAND_ADD_TEXT = 2
@@ -32,7 +33,7 @@ async function MessageHandler(message) {
                 this.roomId = msg.data.roomId;
                 this.acClient = await acClient(msg.data.roomId);
                 if (!this.acClient) {
-                    return;
+                    this.close();
                 }
                 this.acClient.wsStart();
             }
@@ -94,7 +95,7 @@ async function MessageHandler(message) {
             this.acClient.on("join-club", (join) => {
                 const retMsg = {
                     cmd: COMMAND_ADD_JOIN_GROUP,
-                    data: processUserinfo(join.userInfo)
+                    data: processUserinfo(join.fansInfo)
                 }
                 this.sendJson(retMsg)
             })

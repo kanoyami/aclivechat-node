@@ -1,4 +1,4 @@
-const acClient = require("../../ac-danmu.js/client")
+const acClient = require("ac-danmu")
 const COMMAND_HEARTBEAT = 0
 const COMMAND_JOIN_ROOM = 1
 const COMMAND_ADD_TEXT = 2

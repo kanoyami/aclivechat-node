@@ -38,6 +38,10 @@ async function MessageHandler(message) {
                 this.acClient.wsStart();
             }
 
+            this.acClient.on("error", () => {
+                this.close();
+            })
+
 
             this.acClient.on("enter", () => {
                 this.send(`{"cmd":2,"data":{"id":0,"avatarUrl":"https://tx-free-imgs.acfun.cn/style/image/defaultAvatar.jpg","timestamp":1601641021,"authorName":"弹幕姬","authorType":0,"privilegeType":0,"translation":"","content":"房间${msg.data.roomId}连接成功~","userMark":"","medalInfo":{"UperID":0,"ClubName":"","Level":0}}}`)

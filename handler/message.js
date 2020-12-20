@@ -105,6 +105,9 @@ async function MessageHandler(message) {
 }
 
 function processUserinfo(userinfo) {
+
+    if (!userinfo) { return {} }
+
     if (userinfo.badge) {
         let medal = JSON.parse(userinfo.badge).medalInfo
         let medalInfo = {

@@ -1,3 +1,8 @@
+/*
+ * @Date: 2020-12-20 21:41:22
+ * @LastEditors: kanoyami
+ * @LastEditTime: 2020-12-20 22:03:46
+ */
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -5,7 +10,7 @@ const cookieParser = require('cookie-parser');
 const history = require('connect-history-api-fallback');
 const index = require("./routes/index")
 const expressWs = require('express-ws');
-const __PORT__ = 10399;
+const __PORT__ = 12451;
 const messageHandler = require("./handler/message");
 
 

@@ -44,7 +44,7 @@ async function MessageHandler(message) {
 
 
             this.acClient.on("enter", () => {
-               console.log("room entered")
+                console.log("直播间已进入")
             })
 
             this.acClient.on("danmaku", (danmaku) => {

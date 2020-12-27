@@ -10,6 +10,8 @@ const cookieParser = require('cookie-parser');
 const history = require('connect-history-api-fallback');
 const index = require("./routes/index")
 const expressWs = require('express-ws');
+const fileUpload = require('express-fileupload')
+
 const messageHandler = require("./handler/message");
 
 const __CONF__ = require("./config/config.json");
@@ -18,6 +20,7 @@ const __PORT__ = __CONF__["serverPort"];
 const app = express();
 
 app.use(express.json());
+app.use( fileUpload() );
 app.all('*', (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -26,12 +29,13 @@ app.all('*', (req, res, next) => {
 });
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use("/", index);
 app.use(history());
 expressWs(app)
+
 app.ws('/chat', function (ws, req) {
   ws.on('message', messageHandler.bind(ws))
 })
-app.use("/", index);
 app.use(express.static(path.join(__dirname, 'public')));
 
 
@@ -47,6 +51,7 @@ app.use(function (err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
+  console.log(err)
   res.status(err.status || 500);
   res.json('error');
 });

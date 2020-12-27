@@ -11,7 +11,7 @@ JavaScript 全栈
 
 - 下载：release 或 [百度网盘](https://pan.baidu.com/s/1Z_-0BuEJw745D1Ma-GM0cg) 提取码: ansr
 
-## 和 aclivechat 的不同
+## 和 ShigemoriHakura/aclivechat 的不同
 
 与<a href="https://github.com/ShigemoriHakura/aclivechat">ShigemoriHakura/aclivechat</a>的不同
 

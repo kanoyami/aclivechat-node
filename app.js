@@ -11,11 +11,14 @@ const history = require('connect-history-api-fallback');
 const index = require("./routes/index")
 const expressWs = require('express-ws');
 const fileUpload = require('express-fileupload')
-const __PORT__ = 3378;
+
 const messageHandler = require("./handler/message");
 
+const __CONF__ = require("./config/config.json");
+const __PORT__ = __CONF__["serverPort"];
 
 const app = express();
+
 app.use(express.json());
 app.use( fileUpload() );
 app.all('*', (req, res, next) => {
@@ -55,7 +58,7 @@ app.use(function (err, req, res, next) {
 
 
 app.listen(__PORT__);
-console.log("App start on " + __PORT__ )
+console.log(`App start on ${__PORT__} of version ${__CONF__["version"]}` )
 console.log("get high performance!")
 console.log(`打开浏览器，进入http://localhost:${__PORT__}/`)
 console.log("今天令荷在阳台。")

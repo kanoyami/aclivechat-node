@@ -13,9 +13,13 @@ const expressWs = require('express-ws');
 const fileUpload = require('express-fileupload')
 const opn  = require("./utils/auto_open")
 const messageHandler = require("./handler/message");
+const init = require("./init")
 
 const __CONF__ = require("./config/config.json");
 const __PORT__ = __CONF__["serverPort"];
+const __UPLOAD_FIFES__ = path.join(process.cwd(),"upload")
+//启动配置
+init.startup()
 
 const app = express();
 
@@ -36,7 +40,9 @@ expressWs(app)
 app.ws('/chat', function (ws, req) {
   ws.on('message', messageHandler.bind(ws))
 })
+app.use("/upload",express.static(__UPLOAD_FIFES__));
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 
 // catch 404 and forward to error handler

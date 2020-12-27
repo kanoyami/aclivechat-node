@@ -2,12 +2,13 @@ var express = require('express');
 var router = express.Router();
 var path = require('path')
 var fs = require("fs")
-const FONTS_DIR = path.join(__dirname, "../", 'public', 'fonts', "userdefine")
+var config = require("../config/config.json")
+const FONTS_DIR =  path.join(process.cwd(),"upload","fonts")
 /* GET home page. */
 //'w.Write([]byte(`{"version": " + BackendVersion + ", "config": {"enableTranslate":  + strconv.FormatBool(EnableTranslate) + }}))'
 router.get('/server_info', function (req, res, next) {
   res.json({
-    version: "0.2.26-rev-ll",
+    version: config["version"],
     config: {
       enableTranslate: false
     }
@@ -27,7 +28,7 @@ router.post('/font_upload', function (req, res, next) {
       console.log(err);
       return res.status(500).send(err);
     }
-    res.json({ fileName: file.name, filePath: `/fonts/userdefine/${file_name}` });
+    res.json({ fileName: file.name, filePath: `/upload/fonts/${file_name}` });
   });
 
 });
@@ -40,7 +41,7 @@ router.get('/fonts_list', function (req, res, next) {
     let res_arr = []
     files.forEach(e => {
       res_arr.push({
-        url: `/fonts/userdefine/${e}`,
+        url: `/upload/fonts/${e}`,
         name: e.replace(".ttf","")
       })
     })

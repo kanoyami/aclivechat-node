@@ -36,6 +36,7 @@ router.post('/font_upload', function (req, res, next) {
 
 router.get('/fonts_list', function (req, res, next) {
   fs.readdir(FONTS_DIR, (err, files) => {
+    if(!files) res.json([])
     let res_arr = []
     files.forEach(e => {
       res_arr.push({

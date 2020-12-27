@@ -11,7 +11,7 @@ const history = require('connect-history-api-fallback');
 const index = require("./routes/index")
 const expressWs = require('express-ws');
 const fileUpload = require('express-fileupload')
-
+const opn  = require("./utils/auto_open")
 const messageHandler = require("./handler/message");
 
 const __CONF__ = require("./config/config.json");
@@ -62,3 +62,4 @@ console.log(`App start on ${__PORT__} of version ${__CONF__["version"]}` )
 console.log("get high performance!")
 console.log(`打开浏览器，进入http://localhost:${__PORT__}/`)
 console.log("今天令荷在阳台。")
+opn(`http://localhost:${__PORT__}/`)

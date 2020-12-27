@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node app.js",
     "dev": "node-dev app.js",
-    "pkg-win" :"pkg -t win ."
+    "pkg-win": "pkg -t win ."
   },
   "dependencies": {
     "ac-danmu": "^0.4.6",

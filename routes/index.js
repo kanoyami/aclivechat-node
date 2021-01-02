@@ -3,7 +3,7 @@ var router = express.Router();
 var path = require('path')
 var fs = require("fs")
 var config = require("../config/config.json")
-const FONTS_DIR =  path.join(process.cwd(),"upload","fonts")
+const FONTS_DIR = path.join(process.cwd(), "upload", "fonts")
 /* GET home page. */
 //'w.Write([]byte(`{"version": " + BackendVersion + ", "config": {"enableTranslate":  + strconv.FormatBool(EnableTranslate) + }}))'
 router.get('/server_info', function (req, res, next) {
@@ -37,16 +37,20 @@ router.post('/font_upload', function (req, res, next) {
 
 router.get('/fonts_list', function (req, res, next) {
   fs.readdir(FONTS_DIR, (err, files) => {
-    if(!files) return res.json([])
+    if (!files) return res.json([])
     let res_arr = []
     files.forEach(e => {
       res_arr.push({
         url: `/upload/fonts/${e}`,
-        name: e.replace(".ttf","")
+        name: e.replace(".ttf", "")
       })
     })
     res.json(res_arr)
   })
 });
 
+
+router.get('/version', function (req, res, next) {
+  return res.json({ version: config.version })
+});
 module.exports = router;

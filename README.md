@@ -9,7 +9,10 @@
 
 JavaScript 全栈
 
-- 下载：release 或 [百度网盘](https://pan.baidu.com/s/1Z_-0BuEJw745D1Ma-GM0cg) 提取码: ansr
+## 下载
+
+-  [直接点击下载吧](http://livesongs.sdrsks.com.cn/ll-aclivechat-latest.exe)
+-  国内访问release实在太慢了，百度网盘也8行
 
 ## 和 ShigemoriHakura/aclivechat 的不同
 
@@ -23,8 +26,10 @@ JavaScript 全栈
 
 ## TODO
 
-- 增加抽奖姬集成
-- React 重写前端页
+- 增加抽奖姬集成(完成)
+- 自定义贴纸(完成)
+- 前端样式更新(完成)
+- canvas气泡编辑器(大坑)
 
 ## 特别鸣谢
 

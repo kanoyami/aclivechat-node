@@ -6,7 +6,7 @@
     "start": "node app.js",
     "dev": "node-dev app.js",
     "pkg-win": "pkg -t win .",
-    "pkg-publish":" pkg -t win . --output ./ll-aclivechat-latest && zip ll-aclivechat-latest.exe ll-aclivechat-latest.zip  && scp ll-aclivechat-latest.zip root@139.186.70.87:/data/wwwroot/livesongs.sdrsks.com.cn"
+    "pkg-publish":" pkg -t win . --output ./ll-aclivechat-latest && zip ll-aclivechat-latest.zip ll-aclivechat-latest.exe  && scp ll-aclivechat-latest.zip root@139.186.70.87:/data/wwwroot/livesongs.sdrsks.com.cn"
   },
   "dependencies": {
     "ac-danmu": "^0.4.6",

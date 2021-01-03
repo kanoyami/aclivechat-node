@@ -11,7 +11,7 @@ JavaScript 全栈
 
 ## 下载
 
--  [直接点击下载吧](http://livesongs.sdrsks.com.cn/ll-aclivechat-latest.exe)
+-  [直接点击下载吧](http://livesongs.sdrsks.com.cn/ll-aclivechat-latest.zip)
 -  国内访问release实在太慢了，百度网盘也8行
 
 ## 和 ShigemoriHakura/aclivechat 的不同

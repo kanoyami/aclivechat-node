@@ -34,9 +34,9 @@ app.all('*', (req, res, next) => {
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use("/", index);
+app.use("/helper",express.static(path.join(__dirname, 'help')));
 app.use(history());
 expressWs(app)
-
 app.ws('/chat', function (ws, req) {
   ws.on('message', messageHandler.bind(ws))
 })

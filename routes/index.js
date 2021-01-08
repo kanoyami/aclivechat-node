@@ -92,6 +92,20 @@ router.post('/add_account', function (req, res, next) {
 });
 
 
+router.get('/logininfo', function (req, res, next) {
+  let ret = []
+  try {
+    const json = JSON.parse(fs.readFileSync(path.join(CONFIG_DIR, "users.json")).toString("utf-8"))
+    if (json.accounts) {
+      ret = json.accounts
+    }
+  } catch (error) {
+    ret = []
+  }
+  res.json(ret)
+});
+
+
 router.get('/version', function (req, res, next) {
   return res.json({ version: config.version })
 });

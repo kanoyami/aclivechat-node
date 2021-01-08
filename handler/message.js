@@ -1,5 +1,7 @@
 const acClient = require("ac-danmu")
-const { ws } = require("../routes")
+const { userlogin } = require("ac-danmu/tools")
+const fs = require("fs")
+const path = require("path")
 const COMMAND_HEARTBEAT = 0
 const COMMAND_JOIN_ROOM = 1
 const COMMAND_ADD_TEXT = 2
@@ -12,6 +14,9 @@ const COMMAND_ADD_LOVE = 8
 const COMMAND_QUIT_ROOM = 9
 const COMMAND_ADD_FOLLOW = 10
 const COMMAND_ADD_JOIN_GROUP = 11
+
+const CONFIG_PATH = path.join(process.cwd(), "upload", "config", "users.json")
+
 async function MessageHandler(message) {
     const msg = JSON.parse(message)
     this.sendJson = (obj) => {
@@ -23,19 +28,37 @@ async function MessageHandler(message) {
             this.acClient = null;
         }
     })
-
     switch (msg.cmd) {
         case 0:
             this.sendJson({ cmd: COMMAND_HEARTBEAT, data: {} })
             break;
         case 1:
+            let userlogin = false;
+            let users = ""
+            try {
+                const json = JSON.parse(fs.readFileSync(CONFIG_PATH).toString("utf-8"))
+                if (json.accounts) {
+                    users = json.accounts
+                    userlogin = true
+                } else {
+                    userlogin = false
+                }
+            } catch (error) {
+                users = null
+            }
             if (!this.acClient) {
                 this.roomId = msg.data.roomId;
-                this.acClient = await acClient(msg.data.roomId);
+                this.acClient = await acClient(msg.data.roomId, { login: userlogin, userinfo: users });
                 if (!this.acClient) {
                     this.close();
                 }
-                this.acClient.wsStart();
+                try {
+                    this.acClient.wsStart();
+                } catch (error) {
+                    console.log("直播间可能没有开播,或者账户密码配置错误")
+                    return
+                }
+
             }
 
             this.acClient.on("decode-error", () => {
@@ -44,6 +67,7 @@ async function MessageHandler(message) {
 
 
             this.acClient.on("enter", () => {
+                this.send(`{"cmd":2,"data":{"id":0,"avatarUrl":"https://tx-free-imgs.acfun.cn/style/image/defaultAvatar.jpg","timestamp":1601641021,"authorName":"二号","authorType":0,"privilegeType":0,"translation":"","content":"使用${userlogin ? "登录模式" : "游客模式"}进入${msg.data.roomId}","userMark":"","medalInfo":{"UperID":0,"ClubName":"","Level":0}}}`)
                 console.log("已进入直播间")
             })
 

@@ -5,6 +5,7 @@ var fs = require("fs")
 var config = require("../config/config.json")
 const FONTS_DIR = path.join(process.cwd(), "upload", "fonts")
 const STICKERS_DIR = path.join(process.cwd(), "upload", "stickers")
+const CONFIG_DIR = path.join(process.cwd(), "upload", "config")
 /* GET home page. */
 //'w.Write([]byte(`{"version": " + BackendVersion + ", "config": {"enableTranslate":  + strconv.FormatBool(EnableTranslate) + }}))'
 router.get('/server_info', function (req, res, next) {
@@ -76,11 +77,18 @@ router.get('/fonts_list', function (req, res, next) {
     files.forEach(e => {
       res_arr.push({
         url: `/upload/fonts/${e}`,
-        name: e.replace(".ttf", "")
+        name: e.replace(new RegExp(".ttf|.otf|.ttc"), "")
       })
     })
     res.json(res_arr)
   })
+});
+
+
+router.post('/add_account', function (req, res, next) {
+  fs.writeFileSync(path.join(CONFIG_DIR, "users.json"), JSON.stringify(req.body))
+  res.json({ iRet: 0 })
+
 });
 
 

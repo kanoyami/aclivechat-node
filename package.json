@@ -1,15 +1,15 @@
 {
   "name": "aclivechat-node",
-  "version": "0.4.0",
+  "version": "0.4.2",
   "private": true,
   "scripts": {
     "start": "node app.js",
     "dev": "node-dev app.js",
     "pkg-win": "pkg -t win .",
-    "pkg-publish":" pkg -t win . --output ./ll-aclivechat-latest && zip ll-aclivechat-latest.zip ll-aclivechat-latest.exe  && scp ll-aclivechat-latest.zip root@139.186.70.87:/data/wwwroot/livesongs.sdrsks.com.cn"
+    "pkg-publish": " pkg -t win . --output ./ll-aclivechat-latest && zip ll-aclivechat-latest.zip ll-aclivechat-latest.exe  && scp ll-aclivechat-latest.zip root@139.186.70.87:/data/wwwroot/livesongs.sdrsks.com.cn && scp config/config.json root@139.186.70.87:/home/versionCheckSvr/config"
   },
   "dependencies": {
-    "ac-danmu": "^0.4.6",
+    "ac-danmu": "^0.5.1",
     "connect-history-api-fallback": "^1.6.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",

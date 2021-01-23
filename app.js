@@ -38,6 +38,7 @@ app.use("/helper",express.static(path.join(__dirname, 'help')));
 app.use(history());
 expressWs(app)
 app.ws('/chat', function (ws, req) {
+  ws.setMaxListeners(255)
   ws.on('message', messageHandler.bind(ws))
 })
 app.use("/upload",express.static(__UPLOAD_FIFES__));

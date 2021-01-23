@@ -147,7 +147,7 @@ function processUserinfo(userinfo) {
         }
         return {
             id: userinfo.userId.toNumber(),
-            avatarUrl: userinfo.avatar[0].url,
+            avatarUrl:  userinfo.avatar?userinfo.avatar[0].url:"",
             authorName: userinfo.nickname,
             authorType: 0,
             arivilegeType: 0,
